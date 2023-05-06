@@ -1,0 +1,217 @@
+/* places */
+
+.places h1 {
+  font-size: 30px;
+}
+
+.places .places_cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.places .places_cards article {
+  width: 390px;
+  padding: 20px;
+  margin: 20px;
+  border: #FF5A5F solid 1px;
+  border-radius: 4px;
+}
+
+.places .places_cards article .card_header {
+  position: relative;
+  min-height: 100px;
+}
+
+.places .places_cards article .card_header h2 {
+  font-size: 30px;
+  text-align: center;
+  margin: 0 auto;
+  width: 60%;
+  padding-inline: 10px;
+  line-height: 1;
+}
+
+.places .places_cards article .card_header .price_by_night {
+  color: #FF5A5F;
+  border: #FF5A5F solid 4px;
+  min-width: 60px;
+  height: 60px;
+  font-size: 30px;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
+.places .places_cards article .information {
+  height: 80px;
+  border-block: #DDDDDD solid 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.places .places_cards article .information div {
+  width: 100px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.places .places_cards article .information div span {
+  margin-top: 2.5em;
+}
+
+.places .places_cards article .information div.max_guest {
+  background: url(/icon_group.png) no-repeat top center;
+}
+
+.places .places_cards article .information div.number_rooms {
+  background: url(/icon_bed.png) no-repeat top center;
+}
+
+.places .places_cards article .information div.number_bathrooms {
+  background: url(/icon_bath.png) no-repeat top center;
+}
+
+.places .places_cards article .user {
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+.places .places_cards article .amenities,
+.places .places_cards article .reviews {
+  margin-top: 40px;
+}
+
+.places .places_cards article .amenities h2,
+.places .places_cards article .reviews h2 {
+  font-size: 16px;
+  border-bottom: #DDDDDD solid 1px;
+  padding-bottom: 10px;
+}
+
+.places .places_cards article .reviews h2 span {
+  margin-left: 1.4em;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.places .places_cards article .amenities li {
+  list-style: none;
+  height: 3em;
+}
+
+.places .places_cards article .amenities span {
+  background-size: 1.6em 1.4em;
+  padding-left: 3em;
+}
+
+.places .places_cards article .reviews h3 {
+  font-size: 14px;
+}
+
+.places .places_cards article .reviews p {
+  font-size: 12px;
+}
+
+.places .places_cards article .reviews li {
+  list-style: none;
+}
+
+/* Amenity icons */
+
+.Pets {
+  background: url(/icon_pets.png) no-repeat;
+  background-size: 1.6em 1.4em;
+}
+
+.Pool {
+  background: url(/icons8-outdoor-swimming-pool-50.png) no-repeat;
+  background-size: 1.6em 1.4em;
+}
+
+.WiFi {
+  background: url(/icon_wifi.png) no-repeat;
+  background-size: 1.6em 1.4em;
+}
+
+.Room {
+  background: url(/icons8-room-service-64.png) no-repeat;
+  background-size: 1.6em 1.4em;
+}
+
+.Restaurant {
+  background: url(/icons8-restaurant-on-site-24.png) no-repeat;
+  background-size: 1.6em 1.4em;
+}
+
+.Air {
+  background: url(/icons8-air-conditioner-50.png) no-repeat;
+  background-size: 1.6em 1.4em;
+}
+
+.Beach {
+  background: url(/icons8-beach-50.png) no-repeat;
+  background-size: 1.6em 1.4em;
+}
+
+.Casino {
+  background: url(/icons8-chip-50.png) no-repeat;
+  background-size: 1.6em 1.4em;
+}
+
+.Spa {
+  background: url(/icons8-sauna-50.png) no-repeat;
+  background-size: 1.6em 1.4em;
+}
+
+.Breakfast {
+  background: url(/icons8-pancake-stack-50.png) no-repeat;
+  background-size: 1.6em 1.4em;
+}
+
+.Fitness {
+  background: url(/icons8-treadmill-50.png) no-repeat;
+  background-size: 1.6em 1.4em;
+}
+
+.Free {
+  background: url(/icons8-parking-50.png) no-repeat;
+  background-size: 1.6em 1.4em;
+}
+
+.Jacuzzi {
+  background: url(/icons8-jacuzzi-50.png) no-repeat;
+  background-size: 1.6em 1.4em;
+}
+
+.TV {
+  background: url(/icon_tv.png) no-repeat;
+  background-size: 1.6em 1.4em;
+}
+
+.AI {
+  background: url(/icons8-robot-68.png) no-repeat;
+  background-size: 1.6em 1.4em;
+}
+
+.Bar {
+  background: url(/icons8-cocktail-50.png) no-repeat;
+  background-size: 1.6em 1.4em;
+}
+
+.Pet {
+  background: url(/icons8-heart-with-dog-paw-50.png) no-repeat;
+  background-size: 1.6em 1.4em;
+}

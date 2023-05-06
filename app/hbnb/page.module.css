@@ -1,0 +1,65 @@
+/* globals */
+
+.body {
+  margin: 0;
+  padding: 0;
+  color: #484848;
+  font-size: 14px;
+  font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: 100%;
+}
+
+.container {
+  max-width: 1000px;
+  margin-block: 30px;
+  margin-inline: auto;
+  margin-bottom: 10%;
+  padding-inline: 5%;
+}
+
+/* header */
+
+.header {
+  background-color: white;
+  height: 70px;
+  width: 100%;
+  border-bottom: 1px solid #CCCCCC;
+  background: url(/logo.png) no-repeat left center;
+  position: relative;
+}
+
+/* api status */
+#api_status {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #cccccc;
+}
+
+
+/* footer */
+
+.footer {
+  background-color: #fff;
+  height: 60px;
+  width: 100%;
+  border-top: 1px solid #CCCCCC;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+/* loading */
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

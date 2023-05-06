@@ -1,0 +1,102 @@
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model BaseModel {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model City {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  name      String   @unique @db.VarChar(128)
+  stateId   String
+  state     State    @relation(fields: [stateId], references: [id], onDelete: Cascade)
+  places    Place[]
+
+  @@index([stateId], map: "City_stateId_fkey")
+}
+
+model State {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  name      String   @unique @db.VarChar(128)
+  City      City[]
+}
+
+model User {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  firstName String?  @unique @db.VarChar(128)
+  lastName  String?  @unique @db.VarChar(128)
+  email     String   @unique @db.VarChar(128)
+  password  String   @db.VarChar(128)
+  places    Place[]
+  reviews   Review[]
+}
+
+model Place {
+  id              String         @id @default(uuid())
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @default(now())
+  cityId          String
+  userId          String
+  name            String         @db.VarChar(128)
+  description     String?        @db.VarChar(1024)
+  numberRooms     Int            @default(0)
+  numberBathrooms Int            @default(0)
+  maxGuest        Int            @default(0)
+  priceByNight    Int            @default(0)
+  latitude        Float?         @default(0)
+  longitude       Float?         @default(0)
+  city            City           @relation(fields: [cityId], references: [id], onDelete: Cascade)
+  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  PlaceAmenity    PlaceAmenity[]
+  Review          Review[]
+
+  @@index([cityId], map: "Place_cityId_fkey")
+  @@index([userId], map: "Place_userId_fkey")
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  text      String   @db.VarChar(1024)
+  userId    String
+  placeId   String
+  place     Place    @relation(fields: [placeId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([placeId], map: "Review_placeId_fkey")
+  @@index([userId], map: "Review_userId_fkey")
+}
+
+model Amenity {
+  id           String         @id @default(uuid())
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @default(now())
+  name         String         @unique @db.VarChar(128)
+  PlaceAmenity PlaceAmenity[]
+}
+
+model PlaceAmenity {
+  placeId   String
+  amenityId String
+  amenity   Amenity @relation(fields: [amenityId], references: [id], onDelete: Cascade)
+  place     Place   @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  @@id([placeId, amenityId])
+  @@index([amenityId], map: "PlaceAmenity_amenityId_fkey")
+}

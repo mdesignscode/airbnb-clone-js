@@ -1,0 +1,122 @@
+.places h1 {
+  font-size: 30px;
+}
+.places .places_cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.places .places_cards article {
+  width: 390px;
+  padding: 20px;
+  margin: 20px;
+  border: #FF5A5F solid 1px;
+  border-radius: 4px;
+}
+.places .places_cards article .card_header {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2em;
+}
+.places .places_cards article .card_header h2 {
+  font-size: 30px;
+  text-align: center;
+  margin-top: 0;
+  flex: 1;
+  margin-left: 10%;
+}
+.places .places_cards article .card_header .price_by_night {
+  color: #FF5A5F;
+  border: #FF5A5F solid 4px;
+  min-width: 60px;
+  height: 60px;
+  font-size: 30px;
+  border-radius: 50%;
+  text-align: center;
+  padding-top: 10px;
+  padding-inline: 8px;
+}
+.places .places_cards article .information {
+  height: 80px;
+  border-block: #DDDDDD solid 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+.places .places_cards article .information div {
+  width: 100px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+.places .places_cards article .information div span {
+  margin-top: 2.5em;
+}
+.places .places_cards article .information div.max_guest {
+  background: url(../images/icon_group.png) no-repeat top center;
+}
+.places .places_cards article .information div.number_rooms {
+  background: url(../images/icon_bed.png) no-repeat top center;
+}
+.places .places_cards article .information div.number_bathrooms {
+  background: url(../images/icon_bath.png) no-repeat top center;
+}
+.places .places_cards article .user {
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+.places .places_cards article .amenities,
+.places .places_cards article .reviews {
+  margin-top: 40px;
+}
+.places .places_cards article .amenities h2,
+.places .places_cards article .reviews h2 {
+  font-size: 16px;
+  border-bottom: #DDDDDD solid 1px;
+  padding-bottom: 10px;
+}
+.places .places_cards article .amenities li {
+  list-style: none;
+  height: 3em;
+}
+.places .places_cards article .amenities span {
+  background-size: 1.6em 1.4em;
+  padding-left: 3em;
+}
+.places .places_cards article .reviews h3 {
+  font-size: 14px;
+}
+.places .places_cards article .reviews p {
+  font-size: 12px;
+}
+.places .places_cards article .reviews li {
+  list-style: none;
+}
+
+.pets {
+  background: url(../images/icon_pets.png) no-repeat left;
+}
+
+.pool {
+  background: url(../images/icons8-outdoor-swimming-pool-50.png) no-repeat left;
+}
+
+.wifi {
+  background: url(../images/icon_wifi.png) no-repeat left;
+}
+
+.room_service {
+  background: url(../images/icons8-room-service-64.png) no-repeat left;
+}
+
+.restaurant {
+  background: url(../images/icons8-restaurant-on-site-24.png) no-repeat left;
+}
+
+.pool_bar {
+  background: url(../images/icons8-poolside-bar-50.png) no-repeat left;
+}/*# sourceMappingURL=places.css.map */
