@@ -10,7 +10,6 @@ const amenitiesRouter = require('./routes/api/v1/amenities');
 const usersRouter = require('./routes/api/v1/users');
 const placesRouter = require('./routes/api/v1/places');
 const reviewsRouter = require('./routes/api/v1/reviews');
-const swaggerSpec = require('./routes/api/v1/documentation/swaggerSpec')
 
 const app = express();
 

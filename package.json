@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "mocha --recursive",
-    "api": "nodemon server.js",
+    "api": "node server.js",
     "console": "node console.js",
     "pre-fill": "node createDummyObjects.js"
   },

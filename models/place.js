@@ -29,7 +29,6 @@ class Place extends BaseModel {
     };
     if (storage.type !== 'db') {
       placeProperties.amenityIds = [];
-      // placeProperties.reviews = [];
     }
     if (properties) {
       for (const property of Object.keys(properties))
@@ -92,7 +91,6 @@ class Place extends BaseModel {
     } else {
       const allAmenities = storage.all(Amenity);
       const placeAmenities = Object.values(allAmenities).filter(({ id }) => this.amenityIds.includes(id));
-      console.log(placeAmenities);
       return placeAmenities;
     }
   }
