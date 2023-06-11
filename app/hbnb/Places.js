@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 export default function Places ({ setPlaces, places }) {
   useEffect(() => {
     async function fetchData () {
-      const placesReq = await fetch('http://0.0.0.0:3001/api/v1/places_search', {
+      const placesReq = await fetch('https://airbnb-clone-js-api.onrender.com/api/v1/places_search', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

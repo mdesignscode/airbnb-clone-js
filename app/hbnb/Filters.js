@@ -17,11 +17,11 @@ export default function Filters ({ setPlaces }) {
   // fetch data
   useEffect(() => {
     async function fetchData () {
-      const statesReq = await fetch('http://0.0.0.0:3001/api/v1/states');
+      const statesReq = await fetch('https://airbnb-clone-js-api.onrender.com/api/v1/states');
       const states = await statesReq.json();
       setStates(sortList(states));
 
-      const amenitiesReq = await fetch('http://0.0.0.0:3001/api/v1/amenities');
+      const amenitiesReq = await fetch('https://airbnb-clone-js-api.onrender.com/api/v1/amenities');
       const amenities = await amenitiesReq.json();
       setAmenities(sortList(amenities));
     }
@@ -131,7 +131,7 @@ export default function Filters ({ setPlaces }) {
       </div>
       <button
         onClick={async () => {
-          const placesReq = await fetch('http://0.0.0.0:3001/api/v1/places_search', {
+          const placesReq = await fetch('https://airbnb-clone-js-api.onrender.com/api/v1/places_search', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

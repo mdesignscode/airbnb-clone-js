@@ -12,7 +12,7 @@ export default function HBNB () {
   useEffect(() => {
     const apiStatus = document.querySelector('[api]');
     async function setStatusColor () {
-      const api = await fetch('http://0.0.0.0:3001/api/v1/status');
+      const api = await fetch('https://airbnb-clone-js-api.onrender.com/api/v1/status');
       const { status } = await api.json();
       if (status === 'OK')
         apiStatus.style.backgroundColor = '#ff545f';

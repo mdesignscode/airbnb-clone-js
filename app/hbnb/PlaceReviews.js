@@ -8,7 +8,7 @@ export default function PlaceReviews ({ reviews }) {
   useEffect(() => {
     async function fetchUsers () {
       const promises = reviews.map(async ({ userId }) => {
-        const userReq = await fetch(`http://0.0.0.0:3001/api/v1/users/${userId}`);
+        const userReq = await fetch(`https://airbnb-clone-js-api.onrender.com/api/v1/users/${userId}`);
         const user = await userReq.json();
         return user;
       });
