@@ -867,32 +867,22 @@ components:
       properties:
         id:
           type: string
-          description: The user's identifier
-        firstName:
+          description: The amenity's identifier
+        name:
           type: string
-          description: The user's first name
-        lastName:
-          type: string
-          description: The user's last name
-        email:
-          type: string
-          description: The user's email
-        password:
-          type: string
-          description: The user's password
+          description: The amenity's name
       required:
-        - email
-        - password
+        - name
     # city
     City:
       type: object
       properties:
-        stateId:
-          type: string
-          description: The city's state's identifier
         id:
           type: string
           description: The city's identifier
+        stateId:
+          type: string
+          description: The city's state's identifier
         name:
           type: string
           description: The city's name
@@ -903,12 +893,12 @@ components:
     Place:
       type: object
       properties:
-        cityId:
-          type: string
-          description: The place's city's identifier
         id:
           type: string
           description: The place's identifier
+        cityId:
+          type: string
+          description: The place's city's identifier
         name:
           type: string
           description: The place's name
@@ -940,17 +930,21 @@ components:
     Review:
       type: object
       properties:
-        placeId:
-          type: string
-          description: The review's place's identifier
         id:
           type: string
           description: The review's identifier
+        placeId:
+          type: string
+          description: The review's place's identifier
+        userId:
+          type: string
+          description: The user's name
         text:
           type: string
           description: The city's name
       required:
         - placeId
+        - userId
         - text
     # state
     State:
