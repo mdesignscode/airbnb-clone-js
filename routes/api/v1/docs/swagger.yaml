@@ -1,0 +1,966 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: HBNB API
+  description: A simple API for HBNB command-line interface
+servers:
+  - url: http://localhost:5000/api/v1
+
+paths:
+  # index
+  /stats:
+    get:
+      summary: Returns the inventory stats
+      responses:
+        '200':
+          description: An object with the number items in storage for each class
+          content:
+            application/json:
+              schema:
+                type: object
+  /places_search:
+    post:
+      summary: Executes a place search based on a set of filters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amenities:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Amenity'
+                cities:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/City'
+                states:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/State'
+      responses:
+        '200':
+          description: An object with places search results
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # /users
+  /users:
+    get:
+      summary: Returns a list of users
+      responses:
+        '200':
+          description: A JSON array of user objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      summary: Creates a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email of User
+                password:
+                  type: string
+                  description: Password of review
+      responses:
+        '201':
+          description: Newly created user object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Missing email/password
+          content:
+            application/json:
+              schema:
+                type: string
+  /users/{id}:
+    get:
+      summary: Returns a user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the user
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A user object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      summary: Updates a user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the user
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Updated user object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: string
+    delete:
+      summary: Deletes a user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: ID of the user
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: string
+
+  # /amenities
+  /amenities:
+    get:
+      summary: Returns a list of amenities
+      responses:
+        '200':
+          description: A JSON array of amenity objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Amenity'
+    post:
+      summary: Creates a new amenity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Amenity'
+      responses:
+        '201':
+          description: Newly created amenity object
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/Amenity'
+        '400':
+          description: Missing name
+          content:
+            application/json:
+              schema:
+                type: string
+  /amenities/{id}:
+    get:
+      summary: Returns an amenity by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the amenity
+          schema:
+            type: string
+      responses:
+        '200':
+          description: An amenity object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Amenity'
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      summary: Updates an amenity
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the amenity
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Amenity'
+      responses:
+        '200':
+          description: Updated amenity object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Amenity'
+    delete:
+      summary: Deletes an amenity
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the amenity
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Amenity deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # /cities
+  /cities/{id}:
+    get:
+      summary: Returns a city based on id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the city
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A city object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/City'
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      summary: Deletes a city
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the city
+          schema:
+            type: string
+      responses:
+        '200':
+          description: City deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      summary: Updates a city
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the city
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Updated city object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/City'
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+  /cities/{id}/places:
+    get:
+      summary: Returns a list of places in a city
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the city
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A JSON array of place objects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Place'
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      summary: Creates a place in a city
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the city
+          schema:
+            type: string
+        - name: name
+          in: body
+          required: true
+          description: Name of review
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Newly created place object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Place'
+        '400':
+          description: Missing name
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # /places
+  /places/{id}:
+    get:
+      summary: Returns a place based on id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the place
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A place object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Place'
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      summary: Deletes a place
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the place
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Place deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      summary: Updates an place
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the place
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Updated place object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Place'
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+  /places/{id}/reviews:
+    get:
+      summary: Returns a list of reviews on a place
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the place
+          schema:
+            type: array
+      responses:
+        '200':
+          description: A JSON array of review objects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      summary: Creates a review on a place
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the city
+          schema:
+            type: string
+        - name: name
+          in: body
+          required: true
+          description: Name of review
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Newly created review object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+        '400':
+          description: Missing name
+          content:
+            application/json:
+              schema:
+                type: string
+  /places/{id}/amenities:
+    get:
+      summary: Returns a list of amenities at a place
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the place
+          schema:
+            type: array
+      responses:
+        '200':
+          description: A JSON Array of amenity objects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Amenity'
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+  /places/{id}/amenities/{amenityId}:
+    post:
+      summary: Creates an amenity at a place
+      parameters:
+        - name: amenityId
+          in: path
+          required: true
+          description: ID of the amenity
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: ID of the place
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Existing amenity object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Amenity'
+        '201':
+          description: Newly created amenity object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Amenity'
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      summary: Deletes an amenity at a place
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the place
+          schema:
+            type: string
+        - name: amenityId
+          in: path
+          required: true
+          description: ID of the amenity
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Amenity deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # /reviews
+  /reviews/{id}:
+    get:
+      summary: Returns a review based on id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the review
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A review object
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      summary: Updates a review
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the review
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Newly created review object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      summary: Deletes a review
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the review
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Review successfully deleted
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # /states
+  /states:
+    get:
+      summary: Returns a list of states
+      responses:
+        '200':
+          description: A JSON array of state objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/State'
+    post:
+      summary: Creates a new state
+      requestBody:
+        required: true
+        content:
+          application/json:
+            parameters:
+              - name: name
+                required: true
+                description: Name of state
+                schema:
+                  type: string
+            schema:
+              $ref: '#/components/schemas/State'
+      responses:
+        '201':
+          description: Newly created state object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/State'
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+  /states/{id}:
+    get:
+      summary: Returns a state based on id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the state
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A state object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/State'
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: string
+    delete:
+      summary: Deletes a state
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the state
+          schema:
+            type: string
+      responses:
+        '200':
+          description: State deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      summary: Updates a state
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the state
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Updated state object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/State'
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+  /states/{id}/cities:
+    get:
+      summary: Returns a list of cities in a state
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the state
+          schema:
+            type: array
+      responses:
+        '200':
+          description: A JSON array of review objects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/City'
+        '404':
+          description: Id missing
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      summary: Creates a city in a state
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the state
+          schema:
+            type: string
+        - name: name
+          in: body
+          required: true
+          description: Name of city
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Newly created city object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/City'
+        '400':
+          description: Missing name
+          content:
+            application/json:
+              schema:
+                type: string
+
+components:
+  schemas:
+    # user
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The user's identifier
+        firstName:
+          type: string
+          description: The user's first name
+        lastName:
+          type: string
+          description: The user's last name
+        email:
+          type: string
+          description: The user's email
+        password:
+          type: string
+          description: The user's password
+      required:
+        - email
+        - password
+    # amenity
+    Amenity:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The user's identifier
+        firstName:
+          type: string
+          description: The user's first name
+        lastName:
+          type: string
+          description: The user's last name
+        email:
+          type: string
+          description: The user's email
+        password:
+          type: string
+          description: The user's password
+      required:
+        - email
+        - password
+    # city
+    City:
+      type: object
+      properties:
+        stateId:
+          type: string
+          description: The city's state's identifier
+        id:
+          type: string
+          description: The city's identifier
+        name:
+          type: string
+          description: The city's name
+      required:
+        - name
+        - stateId
+    # place
+    Place:
+      type: object
+      properties:
+        cityId:
+          type: string
+          description: The place's city's identifier
+        id:
+          type: string
+          description: The place's identifier
+        name:
+          type: string
+          description: The place's name
+        description:
+          type: string
+          description: A description about the place
+        numberRooms:
+          type: number
+          description: The number of rooms in place
+        numberBathrooms:
+          type: number
+          description: The number of bathrooms in place
+        maxGuest:
+          type: number
+          description: The max number of people allowed
+        priceByNight:
+          type: number
+          description: The place's price per night
+        latitude:
+          type: number
+          description: The place's latitude
+        longitude:
+          type: number
+          description: The place's longitude
+      required:
+        - name
+        - cityId
+    # review
+    Review:
+      type: object
+      properties:
+        placeId:
+          type: string
+          description: The review's place's identifier
+        id:
+          type: string
+          description: The review's identifier
+        text:
+          type: string
+          description: The city's name
+      required:
+        - placeId
+        - text
+    # state
+    State:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The state's identifier
+        name:
+          type: string
+          description: The state's name
+      required:
+        - name

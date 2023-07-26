@@ -69,8 +69,8 @@ router.post('/:id/cities', async (req, res) => {
   try {
     req.body.stateId = req.state.id;
     const city = new City(req.body);
-    const newState = await storage.new(city);
-    res.status(201).json(newState);
+    const newCity = await storage.new(city);
+    res.status(201).json(newCity);
   } catch (error) {
     ;
   }

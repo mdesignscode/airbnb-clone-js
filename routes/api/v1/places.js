@@ -36,7 +36,7 @@ router.get('/:id/reviews', async (req, res) => {
 // creates a review related to a place
 router.post('/:id/reviews', async (req, res) => {
   if (!req.body.hasOwnProperty('name'))
-    res.status(400).send('Missing name');
+    res.status(400).send('Missing text');
 
   try {
     req.body.placeId = req.place.id;

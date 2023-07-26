@@ -5,6 +5,7 @@ const chaiAsPromised = require('chai-as-promised');
 const storage = require('../models');
 const fs = require('fs');
 const User = require('../models/user');
+const { DBStorage } = require('../models/engine/dbStorage');
 
 chai.use(chaiAsPromised);
 

@@ -1,6 +1,8 @@
 #!/usr/bin/node
 // api server
 
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
 const express = require('express');
 const cors = require('cors');
 const { router: v1Router } = require('./routes/api/v1/');
@@ -11,6 +13,8 @@ const usersRouter = require('./routes/api/v1/users');
 const placesRouter = require('./routes/api/v1/places');
 const reviewsRouter = require('./routes/api/v1/reviews');
 
+const swaggerDocument = YAML.load('./routes/api/v1/docs/swagger.yaml');
+
 const app = express();
 
 app.use(cors({
@@ -20,7 +24,7 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/api/v1/', v1Router);
 app.use('/api/v1/states', statesRouter);
