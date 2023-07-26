@@ -5,6 +5,31 @@ const FileStorage = require('../../../models/engine/fileStorage');
 const storage = require('../../../models');
 const fs = require('fs');
 const { assert } = require("chai");
+const { DBStorage } = require('../../../models/engine/dbStorage');
+
+before(function () {
+  // clear storage
+  if (storage.type !== 'db')
+    fs.writeFileSync('file.json', "{}", 'utf-8');
+
+  else {
+    process.env.HBNB_ENV = 'test';
+    new DBStorage();
+    process.env.HBNB_ENV = undefined;
+  }
+});
+
+after(function () {
+  // clear storage
+  if (storage.type !== 'db')
+    fs.writeFileSync('file.json', "{}", 'utf-8');
+
+  else {
+    process.env.HBNB_ENV = 'test';
+    new DBStorage();
+    process.env.HBNB_ENV = undefined;
+  }
+});
 
 describe('FileStorage', () => {
   if (storage.type !== 'db') {
@@ -65,6 +90,22 @@ describe('FileStorage', () => {
       const objects = storage.all();
       assert.equal(objects["Object.123"].name, "updated object");
       assert.equal(objects["Object.123"].age, 30);
+    });
+
+    it("should count the number of objects in storage", function () {
+      const storage = new FileStorage();
+      storage.new({ id: "121", name: "test object 1" });
+      storage.new({ id: "122", name: "test object 2" });
+      storage.new({ id: "123", name: "test object 3" });
+      const objects = storage.count();
+      assert.equal(objects, 3);
+    });
+
+    it('Should return an object based on class and id', function () {
+      const storage = new FileStorage();
+      storage.new({ id: "123", name: "test object" });
+      const testObj = storage.get(Object, '123');
+      assert.isObject(testObj);
     });
   };
 });

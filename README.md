@@ -11,6 +11,7 @@
     - [Examples](#examples)
   - [Dummy Data](#dummy-data)
   - [Classes](#classes)
+  - [Unit Testing](#unit-testing)
 
 
 ## Description of the project
@@ -137,7 +138,7 @@ Delete an object
 Count objects
 
 ```bash
-(hbnb) count Amenity
+(hbnb) Amenity.count()
 ```
 
 <hr/>
@@ -185,3 +186,17 @@ The State class represents a single state where a city is located in. It inherit
 <h3>User</h3>
 
 The User class represents a single user that can own places, visit places and leave reviews. It inherits from BaseModel and adds properties such as password, first name, last name and email.
+
+<hr/>
+
+## Unit Testing
+Unit testing is an essential part of software development as it helps ensure that individual units of code are working correctly. In this project, we use the Mocha and Chai libraries for writing and running unit tests. The tests are located in the test folder.
+Running Unit Tests
+
+To execute the unit tests, you can use the following command:
+
+```shell
+npm run test
+```
+
+The above command will trigger the test runner configured with Mocha, and it will automatically discover and run all the test files present in the test folder.

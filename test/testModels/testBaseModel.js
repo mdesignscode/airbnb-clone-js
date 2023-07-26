@@ -5,7 +5,32 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 const storage = require('../../models');
 const BaseModel = require('../../models/baseModel');
+const fs = require('fs');
+const { DBStorage } = require('../../models/engine/dbStorage');
 
+before(function () {
+  // clear storage
+  if (storage.type !== 'db')
+    fs.writeFileSync('file.json', "{}", 'utf-8');
+
+  else {
+    process.env.HBNB_ENV = 'test';
+    new DBStorage();
+    process.env.HBNB_ENV = undefined;
+  }
+});
+
+after(function () {
+  // clear storage
+  if (storage.type !== 'db')
+    fs.writeFileSync('file.json', "{}", 'utf-8');
+
+  else {
+    process.env.HBNB_ENV = 'test';
+    new DBStorage();
+    process.env.HBNB_ENV = undefined;
+  }
+});
 
 class BaseModelTestSuite {
   constructor () {
