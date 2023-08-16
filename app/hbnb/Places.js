@@ -4,6 +4,7 @@ import PlaceInfo from './PlaceInformation';
 import PlaceAmenities from './PlaceAmenities';
 import PlaceReviews from './PlaceReviews';
 import { useEffect } from 'react';
+import Image from 'next/image';
 
 export default function Places ({ setPlaces, places }) {
   useEffect(() => {
@@ -25,7 +26,10 @@ export default function Places ({ setPlaces, places }) {
         }
         return 0;
       });
-      setPlaces(placesRes);
+      const noDups = []
+      for (let i = 0; i < placesRes.length; i += 2)
+        noDups.push(placesRes[i])
+      setPlaces(noDups);
     }
     fetchData();
   }, []);
@@ -36,7 +40,7 @@ export default function Places ({ setPlaces, places }) {
 
       <div className={styles.places_cards}>
         {
-          places.map(place => {
+          places.length ? places.map(place => {
             return (
               <article>
                 <div className={styles.card_header}>
@@ -54,7 +58,10 @@ export default function Places ({ setPlaces, places }) {
 
               </article>
             );
-          })
+          }) : <div id="loader">
+              <Image width={142} height={60} src="/logo.png" alt="" />
+              <p>API Loading...</p>
+            </div>
         }
       </div>
     </section>
