@@ -58,7 +58,7 @@ export default function Places ({ setPlaces, places }) {
 
               </article>
             );
-          }) : <div id="loader">
+          }) : <div id="loader" style={{ display: 'flex', flexDirection: "column", alignItems: 'center' }}>
               <Image width={142} height={60} src="/logo.png" alt="" />
               <p>API Loading...</p>
             </div>
